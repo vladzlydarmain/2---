@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+
+    </div>
+    <script>
+        // 
+        const url = 'https://api.nasa.gov/planetary/apod?api_key=Jur1b1xkKOkenNuro0eVFrchFmdM932ZhH6bPT91';
+        // 
+        const data = fetch(url)
+        .then( (response) => response.json() )
+        .then( (data) => {
+            // Здесь ваш код
+            let divElem = document.createElement('div');
+            let hElem = document.createElement('h1');
+            let imgElem = document.createElement('img');
+            let dateElem = document.createElement('p')
+            let explanationElem = document.createElement('p');
+            let mainDivElem = document.querySelector('.main');
+            console.log(data);
+            mainDivElem.append(divElem);
+            divElem.append(hElem,explanationElem,imgElem,dateElem);
+            explanationElem.innerHTML = `${data.explanation}`
+            hElem.innerHTML = `${data.title}`;
+            imgElem.src = `${data.url}`;
+            dateElem.innerHTML = `${data.date}`;
+
+
+        } );
+    </script>
+</body>
+</html>
